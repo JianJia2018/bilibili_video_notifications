@@ -1,0 +1,2 @@
+# bilibili_video_notifications
+B站分组视频通知到手机设备
