@@ -53,7 +53,7 @@ function sendVideos(filterList) {
   let string = filterList
     .map((x, i) => {
       return `  ${i + 1}.  **${x.name}** [${x.title}](${x.link})
-        * [![](https://images.weserv.nl/?url=${x.pic})](x.link)
+        * [![](https://images.weserv.nl/?url=${x.pic})](${x.link})
         * ${x.duration}  
         * ${x.time}           
        - - -  
