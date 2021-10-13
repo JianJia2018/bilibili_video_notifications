@@ -7,7 +7,7 @@ let tags = []
 let offsetId = 0
 let list = []
 let page = 1
-const yesterday = new Date(new Date().getTime() - 25 * 60 * 60 * 1000).getTime()
+const yesterday = new Date(new Date().getTime() - 24.5 * 60 * 60 * 1000).getTime()
 
 async function getTest() {
   let { data } = await getDynamicHistory(offsetId)
@@ -16,7 +16,6 @@ async function getTest() {
   let endData = data.cards[data.cards.length - 1]
   offsetId = endData.desc.dynamic_id
   if (endData.desc.timestamp * 1000 <= yesterday) {
-    console.log("list: ", list)
     console.log(`---获取完成---`)
     filterListToTags()
     return
@@ -53,10 +52,9 @@ function filterListToTags() {
 function sendVideos(filterList) {
   let string = filterList
     .map((x, i) => {
-      return `  ${i + 1}. [${x.title}](${x.link})
-        * up: ${x.name}  
-        * ![](${x.pic}) 
-        * 时长: ${x.duration}  
+      return `  ${i + 1}.  **${x.name}** [${x.title}](${x.link})
+        * [![](https://images.weserv.nl/?url=${x.pic})](x.link)
+        * ${x.duration}  
         * ${x.time}           
        - - -  
 `
