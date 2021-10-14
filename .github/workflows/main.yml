@@ -2,7 +2,7 @@ name: bilibil_video
 
 on:
   schedule:
-    - cron: "30 22 * * *"
+    - cron: "0 12 * * *"
 
 jobs:
   build:

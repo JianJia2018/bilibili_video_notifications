@@ -50,7 +50,7 @@ function filterListToTags() {
 }
 
 function sendVideos(filterList) {
-  let string = filterList
+  let list = filterList
     .map((x, i) => {
       return `  ${i + 1}.  **${x.name}** [${x.title}](${x.link})
         * [![](https://images.weserv.nl/?url=${x.pic})](${x.link})
@@ -60,6 +60,16 @@ function sendVideos(filterList) {
 `
     })
     .join("")
+  let header = filterList
+    .map((x, i) => {
+      return `${i + 1}.  **${x.name}** [${x.title}](${x.link}) [${x.duration}]`
+    })
+    .join()
+  let string = `
+      ${header}
+      ******
+      ${list}
+  `
   pushPlusNotify(`${new Date().toLocaleString()} B站视频动态`, string, "markdown")
 }
 
