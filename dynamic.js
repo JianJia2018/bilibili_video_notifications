@@ -6,9 +6,11 @@ import dayjs from "dayjs"
 import "dayjs/locale/zh-cn.js"
 import timezone from "dayjs/plugin/timezone.js"
 import utc from "dayjs/plugin/utc.js"
+
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs().locale("zh-cn")
+dayjs.tz.setDefault("Asia/Shanghai")
 
 let tags = []
 let offsetId = 0
@@ -40,9 +42,7 @@ function filterListToTags() {
         let card = JSON.parse(x.card)
         return {
           card,
-          time: dayjs(x.desc.timestamp * 1000)
-            .tz("Asia/Shanghai")
-            .format("YYYY-MM-DD HH:mm"),
+          time: dayjs.tz(x.desc.timestamp * 1000).format("YYYY-MM-DD HH:mm"),
           title: card.title,
           link: card.short_link_v2 || card.short_link,
           name: card.owner.name,
@@ -79,7 +79,7 @@ function sendVideos(filterList) {
       ******
       ${list}
   `
-  pushPlusNotify(`${dayjs().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm")} B站视频动态`, string, "markdown")
+  pushPlusNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
 }
 
 async function init() {
