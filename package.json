@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JianJia2018/bilibili_video_notifications#readme",
   "dependencies": {
+    "dayjs": "^1.10.7",
     "node-fetch": "^3.0.0",
     "request": "^2.88.2"
   }

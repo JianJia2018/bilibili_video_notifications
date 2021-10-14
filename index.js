@@ -1,3 +1,4 @@
 import { init } from "./dynamic.js"
 
-init()
+// init()
+console.log("dayjs", dayjs().format("YYYY-MM-DD HH:mm"))

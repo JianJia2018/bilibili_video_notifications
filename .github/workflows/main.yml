@@ -3,6 +3,7 @@ name: bilibil_video
 on:
   schedule:
     - cron: "0 12 * * *"
+  workflow_dispatch:
 
 jobs:
   build:

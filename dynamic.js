@@ -2,6 +2,7 @@ import { getDynamicNew, getDynamicHistory } from "./api.js"
 import { getAllTags } from "./tags.js"
 import { getDuration } from "./utils.js"
 import { pushPlusNotify } from "./pushplus.js"
+import dayjs from "dayjs"
 
 let tags = []
 let offsetId = 0
