@@ -61,24 +61,26 @@ function filterListToTags() {
 function sendVideos(filterList) {
   let list = filterList
     .map((x, i) => {
-      return `  ${i + 1}.  **${x.name}** [${x.title}](${x.link})
-        * [![](https://images.weserv.nl/?url=${x.pic})](${x.link})
-        * ${x.duration}  
-        * ${x.time}           
-       - - -  
+      return `${i + 1}.  **${x.name}** [${x.title}](${x.link})
+  * [![](https://images.weserv.nl/?url=${x.pic})](${x.link})
+  * ${x.duration}  
+  * ${x.time}           
+- - - - - - -
 `
     })
-    .join("")
+    .join("\n")
   let header = filterList
     .map((x, i) => {
       return `${i + 1}.  **${x.name}** [${x.title}](${x.link}) [${x.duration}]`
     })
-    .join()
+    .join("\n")
   let string = `
-      ${header}
-      ******
-      ${list}
-  `
+${header}
+
+*********
+
+${list}`
+  console.log("string: ", string)
   pushPlusNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
 }
 
