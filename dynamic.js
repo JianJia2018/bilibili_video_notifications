@@ -7,6 +7,7 @@ import "dayjs/locale/zh-cn.js"
 import timezone from "dayjs/plugin/timezone.js"
 import utc from "dayjs/plugin/utc.js"
 
+// 切换 GMT 时区
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs().locale("zh-cn")
@@ -85,11 +86,15 @@ ${list}`
 }
 
 async function init() {
-  tags = await getAllTags()
-  let { data } = await getDynamicNew()
-  list = data.cards
-  offsetId = data.cards[data.cards.length - 1].desc.dynamic_id
-  getTest()
+  try {
+    tags = await getAllTags()
+    let { data } = await getDynamicNew()
+    list = data.cards
+    offsetId = data.cards[data.cards.length - 1].desc.dynamic_id
+    getTest()
+  } catch (e) {
+    pushPlusNotify(`B站动态发送失败`, e)
+  }
 }
 
 export { init }
