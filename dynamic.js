@@ -56,6 +56,10 @@ function filterListToTags() {
       }
     })
     .filter(x => x)
+    .reduce((prev, cur) => {
+      obj[cur?.desc?.rid] ? "" : (obj[cur?.desc?.rid] = true && prev.push(cur)) //_id为每个对象独有的标识，即用来判断去重的标识
+      return prev
+    }, [])
   sendVideos(myVideos)
 }
 
