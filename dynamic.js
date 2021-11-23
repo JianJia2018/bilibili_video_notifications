@@ -17,7 +17,7 @@ let tags = []
 let offsetId = 0
 let list = []
 let page = 1
-const yesterday = new Date(new Date().getTime() - 24.5 * 60 * 60 * 1000).getTime()
+const yesterday = new Date(new Date().getTime() - 24.5 * 60 * 60 * 1000 * 2).getTime()
 
 async function getTest() {
   try {
