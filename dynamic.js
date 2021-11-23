@@ -20,20 +20,25 @@ let page = 1
 const yesterday = new Date(new Date().getTime() - 24.5 * 60 * 60 * 1000).getTime()
 
 async function getTest() {
-  let { data } = await getDynamicHistory(offsetId)
-  console.log(`---获取第${page}页数据---`)
-  list = [...list, ...data.cards]
-  let endData = data.cards[data.cards.length - 1]
-  offsetId = endData.desc.dynamic_id
-  if (endData.desc.timestamp * 1000 <= yesterday) {
-    console.log(`---获取完成---`)
-    filterListToTags()
-    return
+  try {
+    let { data } = await getDynamicHistory(offsetId)
+    console.log(`---获取第${page}页数据---`)
+    list = [...list, ...data.cards]
+    let endData = data.cards[data.cards.length - 1]
+    offsetId = endData.desc.dynamic_id
+    if (endData.desc.timestamp * 1000 <= yesterday) {
+      console.log(`---获取完成---`)
+      filterListToTags()
+      return
+    }
+    setTimeout(() => {
+      page++
+      return getTest()
+    }, 8000)
+  } catch (e) {
+    //TODO handle the exception
+    pushPlusNotify(`失败`, string, e)
   }
-  setTimeout(() => {
-    page++
-    return getTest()
-  }, 8000)
 }
 
 function filterListToTags() {
@@ -51,7 +56,7 @@ function filterListToTags() {
           avatar: card.owner.face,
           pic: card.pic || card.first_frame,
           duration: getDuration(card.duration),
-          rid: x.desc.dynamic_id
+          rid: x.desc.dynamic_id,
         }
       } else {
         return
