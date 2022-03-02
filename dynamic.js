@@ -1,7 +1,7 @@
 import { getDynamicNew, getDynamicHistory } from "./api.js"
 import { getAllTags } from "./tags.js"
 import { getDuration } from "./utils.js"
-import { pushPlusNotify } from "./pushplus.js"
+import { pushDeerNotify, pushPlusNotify } from "./pushplus.js"
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn.js"
 import timezone from "dayjs/plugin/timezone.js"
@@ -57,6 +57,7 @@ function filterListToTags() {
           pic: card.pic || card.first_frame,
           duration: getDuration(card.duration),
           rid: x.desc.dynamic_id,
+          bvid: x?.desc.bvid,
         }
       } else {
         return
@@ -84,7 +85,7 @@ function sendVideos(filterList) {
     .join("\n")
   let header = filterList
     .map((x, i) => {
-      return `${i + 1}.  **${x.name}** [${x.title}](${x.link}) [${x.duration}]`
+      return `${i + 1}.  **${x.name}** [${x.title}](${"bilibili://video/" + x.bvid}) [${x.duration}]`
     })
     .join("\n")
   let string = `
@@ -95,6 +96,7 @@ ${header}
 ${list}`
   console.log("string: ", string)
   pushPlusNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
+  pushDeerNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
 }
 
 async function init() {

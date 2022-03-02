@@ -18,4 +18,5 @@ jobs:
         env:
           COOKIE: ${{ secrets.COOKIE }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
         run: npm ci && node index.js
