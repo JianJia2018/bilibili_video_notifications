@@ -58,7 +58,7 @@ function filterListToTags() {
           pic: card.pic || card.first_frame,
           duration: getDuration(card.duration),
           rid: x.desc.dynamic_id,
-          bvid: x?.desc?.bvid,
+          bvid: x.desc.bvid,
         }
       } else {
         return
