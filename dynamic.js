@@ -45,6 +45,7 @@ function filterListToTags() {
   let obj = {}
   let myVideos = list
     .map(x => {
+      console.log('x: ', x);
       if (tags.includes(x.desc.uid)) {
         let card = JSON.parse(x.card)
         return {
