@@ -17,7 +17,10 @@ let tags = []
 let offsetId = 0
 let list = []
 let page = 1
+
 const yesterday = new Date(new Date().getTime() - 24.5 * 60 * 60 * 1000).getTime()
+const filter_uid = [429711841] // 要过滤的uid
+const Max_Dynamic_Num = 12 // 同一uid最大视频动态条数
 
 async function getTest() {
   try {
@@ -45,7 +48,7 @@ function filterListToTags() {
   let obj = {}
   let myVideos = list
     .map(x => {
-      console.log('x: ', x);
+      console.log("x: ", x)
       if (tags.includes(x.desc.uid)) {
         let card = JSON.parse(x.card)
         return {
@@ -70,6 +73,11 @@ function filterListToTags() {
       obj[cur.link] ? "" : (obj[cur.link] = true && prev.push(cur)) //_id为每个对象独有的标识，即用来判断去重的标识
       return prev
     }, [])
+
+  if (myVideos.filter(x => filter_uid.includes(x.desc.uid)).length >= Max_Dynamic_Num) {
+    myVideos = myVideos.filter(x => !filter_uid.includes(x.desc.uid))
+  }
+
   sendVideos(myVideos)
 }
 
