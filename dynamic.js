@@ -48,8 +48,8 @@ function filterListToTags() {
   let obj = {}
   let myVideos = list
     .map(x => {
-      console.log("x: ", x)
       if (tags.includes(x.desc.uid)) {
+        console.log("x: ", x)
         let card = JSON.parse(x.card)
         return {
           card,
@@ -69,19 +69,20 @@ function filterListToTags() {
     })
     .filter(x => x)
     .reduce((prev, cur) => {
-      console.log(obj, cur, prev)
+      // console.log(obj, cur, prev)s
       obj[cur.link] ? "" : (obj[cur.link] = true && prev.push(cur)) //_id为每个对象独有的标识，即用来判断去重的标识
       return prev
     }, [])
 
   if (myVideos.filter(x => filter_uid.includes(x.desc.uid)).length >= Max_Dynamic_Num) {
-    myVideos = myVideos.filter(x => !filter_uid.includes(x.desc.uid))
+    sendVideos(myVideos.filter(x => !filter_uid.includes(x.desc.uid)))
+  } else {
+    sendVideos(myVideos)
   }
-
-  sendVideos(myVideos)
 }
 
 function sendVideos(filterList) {
+  console.log('filterList: ', filterList);
   let list = filterList
     .map((x, i) => {
       return `${i + 1}.  **${x.name}** [${x.title}](${x.link})
