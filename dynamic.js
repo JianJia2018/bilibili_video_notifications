@@ -53,6 +53,7 @@ function filterListToTags() {
         let card = JSON.parse(x.card)
         return {
           card,
+          uid: x.desc.uid,
           time: dayjs.tz(x.desc.timestamp * 1000).format("YYYY-MM-DD HH:mm"),
           title: card.title,
           link: card.short_link_v2 || card.short_link,
@@ -75,8 +76,8 @@ function filterListToTags() {
     }, [])
 
   console.log("myVideos: ", myVideos)
-  if (myVideos.filter(x => filter_uid.includes(x.desc.uid)).length >= Max_Dynamic_Num) {
-    sendVideos(myVideos.filter(x => !filter_uid.includes(x.desc.uid)))
+  if (myVideos.filter(x => filter_uid.includes(x.uid)).length >= Max_Dynamic_Num) {
+    sendVideos(myVideos.filter(x => !filter_uid.includes(x.uid)))
   } else {
     sendVideos(myVideos)
   }
