@@ -49,7 +49,7 @@ function filterListToTags() {
   let myVideos = list
     .map(x => {
       if (tags.includes(x.desc.uid)) {
-        console.log("x: ", x)
+        // console.log("x: ", x)
         let card = JSON.parse(x.card)
         return {
           card,
@@ -74,6 +74,7 @@ function filterListToTags() {
       return prev
     }, [])
 
+  console.log("myVideos: ", myVideos)
   if (myVideos.filter(x => filter_uid.includes(x.desc.uid)).length >= Max_Dynamic_Num) {
     sendVideos(myVideos.filter(x => !filter_uid.includes(x.desc.uid)))
   } else {
@@ -82,7 +83,7 @@ function filterListToTags() {
 }
 
 function sendVideos(filterList) {
-  console.log('filterList: ', filterList);
+  console.log("filterList: ", filterList)
   let list = filterList
     .map((x, i) => {
       return `${i + 1}.  **${x.name}** [${x.title}](${x.link})
