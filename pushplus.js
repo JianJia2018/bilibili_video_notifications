@@ -15,7 +15,7 @@ let PUSH_PLUS_USER = ""
 import request from "request"
 const timeout = 15000 //超时时间(单位毫秒)
 
-function pushPlusNotify(text, desp, template = "html") {
+function pushPlusNotify(text, desp = "", template = "html") {
   return new Promise(resolve => {
     if (PUSH_PLUS_TOKEN) {
       if (template === "html") {
@@ -63,7 +63,7 @@ function pushPlusNotify(text, desp, template = "html") {
   })
 }
 
-function pushDeerNotify(text, desp, type = "html") {
+function pushDeerNotify(text, desp = "", type = "html") {
   return new Promise(resolve => {
     if (PUSH_KEY) {
       if (type === "html") {
