@@ -40,7 +40,7 @@ async function getTest() {
     }, 8000)
   } catch (e) {
     //TODO handle the exception
-    pushPlusNotify(`失败`, string, e)
+    pushPlusNotify(`获取动态数据失败`, `${e}`)
   }
 }
 
