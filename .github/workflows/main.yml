@@ -2,7 +2,7 @@ name: bilibil_video
 
 on:
   schedule:
-    - cron: "45 11 * * *"
+    - cron: "45 11 * * *" #不是北京时间, 北京时间需要+8
   workflow_dispatch:
 
 jobs:
@@ -19,4 +19,6 @@ jobs:
           COOKIE: ${{ secrets.COOKIE }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          TAG_ID: ${{ secrets.TAG_ID }}
+          UID: ${{ secrets.UID }}
         run: npm ci && node index.js
