@@ -101,7 +101,7 @@ function sendVideos(filterList) {
   let list = filterList
     .map((x, i) => {
       return `${i + 1}.  **${x.name}** [${x.title}](${x.link})
-  * [![](https://images.weserv.nl/?url=${x.pic})](${x.link})
+  * [![](https://images.weserv.nl/?url=${x.pic}&w=375&h=375&dpr=4)](${x.link})
   * ${x.duration}  
   * ${x.time}           
 - - - - - - -
@@ -119,8 +119,7 @@ ${header}
 *********
 
 ${list}`
-  console.log("string: ", string)
-
+  // console.log("string: ", string)
   pushPlusNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
   pushDeerNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
 }
