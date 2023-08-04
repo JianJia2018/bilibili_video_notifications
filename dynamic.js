@@ -1,7 +1,7 @@
 import { getDynamicNew, getDynamicHistory } from "./api.js"
 import { getAllTags } from "./tags.js"
 import { getDuration } from "./utils.js"
-import { pushDeerNotify, pushPlusNotify } from "./pushplus.js"
+import { PushMeNotify, pushDeerNotify, pushPlusNotify } from "./pushplus.js"
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn.js"
 import timezone from "dayjs/plugin/timezone.js"
@@ -120,8 +120,10 @@ ${header}
 
 ${list}`
   // console.log("string: ", string)
-  pushPlusNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
-  pushDeerNotify(`${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`, string, "markdown")
+  const title = `${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`
+  pushPlusNotify(title, string, "markdown")
+  pushDeerNotify(title, string, "markdown")
+  PushMeNotify(title, string)
 }
 
 /**
