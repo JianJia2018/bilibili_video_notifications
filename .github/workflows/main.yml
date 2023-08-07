@@ -21,4 +21,5 @@ jobs:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           TAG_ID: ${{ secrets.TAG_ID }}
           UID: ${{ secrets.UID }}
+          PUSHME_KEY: ${{ secrets.PUSHME_KEY }}
         run: npm ci && node index.js
