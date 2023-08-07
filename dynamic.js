@@ -96,7 +96,7 @@ function filterListToTags() {
  * 发送视频动态列表到通知软件. 格式为markdown
  * @param {*} filterList 过滤后的视频动态列表
  */
-function sendVideos(filterList) {
+async function sendVideos(filterList) {
   console.log("filterList: ", filterList)
   let list = filterList
     .map((x, i) => {
@@ -121,11 +121,10 @@ ${header}
 ${list}`
   // console.log("string: ", string)
   const title = `${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`
-  pushPlusNotify(title, string, "markdown")
-  pushDeerNotify(title, string, "markdown")
-  PushMeNotify(title, string).then(res => {
-    console.log("pushMe", res)
-  })
+  await pushPlusNotify(title, string, "markdown")
+  await pushDeerNotify(title, string, "markdown")
+  let res = await PushMeNotify(title, string)
+  console.log("res: ", res)
 }
 
 /**
