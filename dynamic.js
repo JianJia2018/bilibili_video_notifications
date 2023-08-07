@@ -123,7 +123,9 @@ ${list}`
   const title = `${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`
   pushPlusNotify(title, string, "markdown")
   pushDeerNotify(title, string, "markdown")
-  PushMeNotify(title, string)
+  PushMeNotify(title, string).then(res => {
+    console.log("pushMe", res)
+  })
 }
 
 /**

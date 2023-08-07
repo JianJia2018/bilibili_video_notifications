@@ -151,7 +151,7 @@ function PushMeNotify(text, desp, type = "markdown") {
         }
       })
     } else {
-      resolve()
+      resolve("没有提供PushMe的KEY，取消PushMe推送消息通知🚫\n")
     }
   })
 }
