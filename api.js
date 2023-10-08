@@ -91,6 +91,7 @@ const getTags = async (pn = 1) => {
       "credentials": "include"
     });
     const json = await res.json()
+    console.log(res, json);
     return json
   } catch (err) { }
 }
