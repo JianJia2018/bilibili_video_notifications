@@ -11,9 +11,9 @@ if (process.env.UID) {
 if (process.env.TAG_ID) {
   tagid = process.env.TAG_ID
 }
-const type = 8 // b站视频类型. 默认只请求视频动态
+const type = 'video' // b站视频类型. 默认只请求视频动态
 const getDynamicNew = () => {
-  return fetch(`https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?uid=${uid}&type_list=${type}&from=&platform=web`, {
+  return fetch(`https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all?type=${type}&page=1&features=itemOpusStyle,listOnlyfans&timezone_offset=-480`, {
     headers: {
       accept: "application/json, text/plain, */*",
       "accept-language": "zh-CN,zh;q=0.9",
@@ -38,9 +38,8 @@ const getDynamicNew = () => {
     .catch(err => { })
 }
 
-const getDynamicHistory = offsetId => {
-  return fetch(
-    `https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_history?uid=${uid}&offset_dynamic_id=${offsetId}&type=${type}&from=&platform=web`,
+const getDynamicHistory = (offsetId, page) => {
+  return fetch(`https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all?offset=${offsetId}&type=${type}&page=${page}&features=itemOpusStyle,listOnlyfans&timezone_offset=-480`,
     {
       headers: {
         accept: "application/json, text/plain, */*",
