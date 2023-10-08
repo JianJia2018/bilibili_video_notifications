@@ -3,7 +3,7 @@ let COOKIE = ``
 let uid = ""
 let tagid = ""
 if (process.env.COOKIE) {
-  COOKIE = process.env.COOKIE
+  COOKIE = JSON.stringify(process.env.COOKIE)
 }
 if (process.env.UID) {
   uid = process.env.UID
