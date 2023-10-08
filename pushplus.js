@@ -29,7 +29,6 @@ function pushPlusNotify(text, desp = "", template = "html") {
   return new Promise(resolve => {
     if (PUSH_PLUS_TOKEN) {
       if (template === "html") {
-        console.log(desp)
         desp = `${desp}`?.replace(/[\n\r]/g, "<br>") // 默认为html, 不支持plaintext
       }
       const body = {

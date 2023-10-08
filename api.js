@@ -35,7 +35,7 @@ const getDynamicNew = () => {
     .then(json => {
       return json
     })
-    .catch(err => {})
+    .catch(err => { })
 }
 
 const getDynamicHistory = offsetId => {
@@ -64,32 +64,34 @@ const getDynamicHistory = offsetId => {
     .then(json => {
       return json
     })
-    .catch(err => {})
+    .catch(err => { })
 }
 
 const getTags = async (pn = 1) => {
   try {
     const res = await fetch(`https://api.bilibili.com/x/relation/tag?mid=${uid}&tagid=${tagid}&pn=${pn}&ps=50`, {
       headers: {
-        accept: "*/*",
+        "accept": "application/json, text/plain, */*",
         "accept-language": "zh-CN,zh;q=0.9",
-        "sec-ch-ua": '"Chromium";v="94", "Google Chrome";v="94", ";Not A Brand";v="99"',
+        "cache-control": "no-cache",
+        "pragma": "no-cache",
+        "sec-ch-ua": "\"Google Chrome\";v=\"117\", \"Not;A=Brand\";v=\"8\", \"Chromium\";v=\"117\"",
         "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"Windows"',
-        "sec-fetch-dest": "script",
-        "sec-fetch-mode": "no-cors",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-site",
         cookie: `${COOKIE}`,
       },
-      referrer: "https://www.bilibili.com/",
-      referrerPolicy: "no-referrer-when-downgrade",
-      body: null,
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
-    })
+      "referrer": "https://www.bilibili.com/",
+      "referrerPolicy": "no-referrer-when-downgrade",
+      "body": null,
+      "method": "GET",
+      "mode": "cors",
+      "credentials": "include"
+    });
     const json = await res.json()
     return json
-  } catch (err) {}
+  } catch (err) { }
 }
 export { getDynamicNew, getDynamicHistory, getTags }
