@@ -64,7 +64,9 @@ const getDynamicHistory = offsetId => {
     .then(json => {
       return json
     })
-    .catch(err => { })
+    .catch(err => {
+      console.log('getDynamicHistory error:', err)
+    })
 }
 
 const getTags = async (pn = 1) => {
@@ -93,6 +95,8 @@ const getTags = async (pn = 1) => {
     const json = await res.json()
     console.log(res, json);
     return json
-  } catch (err) { }
+  } catch (err) {
+    console.log('getTags error:', err)
+  }
 }
 export { getDynamicNew, getDynamicHistory, getTags }
