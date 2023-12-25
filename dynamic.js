@@ -1,6 +1,6 @@
 import { getDynamicNew, getDynamicHistory } from "./api.js"
 import { getAllTags } from "./tags.js"
-import { getDuration } from "./utils.js"
+// import { getDuration } from "./utils.js"
 import { PushMeNotify, pushDeerNotify, pushPlusNotify } from "./pushplus.js"
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn.js"
@@ -34,7 +34,6 @@ async function getList() {
 
     let endData = data.items[data.items.length - 1]
 
-
     offsetId = data.offset
     if (endData.modules.module_author.pub_ts * 1000 <= yesterday) {
       // 获取一天的数据完成
@@ -62,7 +61,6 @@ function filterListToTags() {
     .map(x => {
       let card = x.modules.module_dynamic.major.archive
       let _author = x.modules.module_author
-
 
       if (tags.includes(_author.mid)) {
         return {
@@ -124,10 +122,15 @@ ${header}
 ${list}`
   // console.log("string: ", string)
   const title = `${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`
-  await pushPlusNotify(title, string, "markdown")
-  await pushDeerNotify(title, string, "markdown")
-  let res = await PushMeNotify(title, string)
-  console.log("res: ", res)
+  if (process.env.HOSTNAME === "qinglong") {
+    const _notify = require("./sendNotify.js")
+    _notify.sendNotify(title, string, "markdown")
+  } else {
+    await pushPlusNotify(title, string, "markdown")
+    await pushDeerNotify(title, string, "markdown")
+    let res = await PushMeNotify(title, string)
+    console.log("res: ", res)
+  }
 }
 
 /**
