@@ -1,6 +1,6 @@
 import { init } from "./dynamic.js"
 /**
-  cron "10 9 * * *" B站视频动态推送.js, tag=B站视频动态推送
+  cron "55 7 * * *" B站视频动态推送.js, tag=B站视频动态推送
  */
 
 !(async () => {

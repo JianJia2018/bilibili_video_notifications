@@ -1,6 +1,5 @@
 import { getDynamicNew, getDynamicHistory } from "./api.js"
 import { getAllTags } from "./tags.js"
-// import { getDuration } from "./utils.js"
 import { PushMeNotify, pushDeerNotify, pushPlusNotify } from "./pushplus.js"
 import dayjs from "dayjs"
 import "dayjs/locale/zh-cn.js"
