@@ -32,7 +32,6 @@ import request from "request"
 const timeout = 15000 //超时时间(单位毫秒)
 
 function pushPlusNotify(text, desp = "", template = "html") {
-  if (process.env.HOSTNAME === "qinglong") return
   return new Promise(resolve => {
     if (PUSH_PLUS_TOKEN) {
       if (template === "html") {

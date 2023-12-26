@@ -121,12 +121,7 @@ ${header}
 ${list}`
   // console.log("string: ", string)
   const title = `${dayjs.tz().format("MM-DD HH:mm")} B站视频动态`
-  if (process.env.HOSTNAME === "qinglong") {
-    const _notify = require("./sendNotify.js")
-    _notify.sendNotify(title, string, "markdown")
-  } else {
-    await pushPlusNotify(title, string, "markdown")
-  }
+  await pushPlusNotify(title, string, "markdown")
   await pushDeerNotify(title, string, "markdown")
   let res = await PushMeNotify(title, string)
   console.log("res: ", res)
