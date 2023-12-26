@@ -6,6 +6,7 @@ B站关注分组视频通知到手机设备
 
 # 运行方式
 1. ### github actions
+2. ### qinglong
 
 
 # GitHub Actions secrets and variables 配置
