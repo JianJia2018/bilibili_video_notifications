@@ -13,19 +13,26 @@ let PUSHME_KEY = ""
 let PUSH_PLUS_USER = ""
 if (process.env.PUSH_PLUS_TOKEN) {
   PUSH_PLUS_TOKEN = process.env.PUSH_PLUS_TOKEN
+} else {
+  console.log("请设置环境变量 PUSH_PLUS_TOKEN")
 }
 if (process.env.PUSH_KEY) {
   PUSH_KEY = process.env.PUSH_KEY
+} else {
+  console.log("请设置PUSH_KEY")
 }
 
 if (process.env.PUSHME_KEY) {
   PUSHME_KEY = process.env.PUSHME_KEY
+} else {
+  console.log("请设置PUSHME_KEY")
 }
 
 import request from "request"
 const timeout = 15000 //超时时间(单位毫秒)
 
 function pushPlusNotify(text, desp = "", template = "html") {
+  if (process.env.HOSTNAME === "qinglong") return
   return new Promise(resolve => {
     if (PUSH_PLUS_TOKEN) {
       if (template === "html") {

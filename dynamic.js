@@ -126,10 +126,10 @@ ${list}`
     _notify.sendNotify(title, string, "markdown")
   } else {
     await pushPlusNotify(title, string, "markdown")
-    await pushDeerNotify(title, string, "markdown")
-    let res = await PushMeNotify(title, string)
-    console.log("res: ", res)
   }
+  await pushDeerNotify(title, string, "markdown")
+  let res = await PushMeNotify(title, string)
+  console.log("res: ", res)
 }
 
 /**
