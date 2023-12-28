@@ -7,8 +7,8 @@ if (process.env.COOKIE) {
 } else {
   console.log("请先获取cookie")
 }
-if (process.env.UID) {
-  uid = process.env.UID
+if (process.env.BILI_UID) {
+  uid = process.env.BILI_UID
 } else {
   console.log("请先获取你的uid")
 }

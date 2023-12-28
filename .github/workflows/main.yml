@@ -20,6 +20,6 @@ jobs:
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           TAG_ID: ${{ secrets.TAG_ID }}
-          UID: ${{ secrets.UID }}
+          BILI_UID: ${{ secrets.BILI_UID }}
           PUSHME_KEY: ${{ secrets.PUSHME_KEY }}
         run: npm ci && node index.js
