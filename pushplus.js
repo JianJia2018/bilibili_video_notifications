@@ -3,7 +3,7 @@
 //PUSH_PLUS_TOKEN：微信扫码登录后一对一推送或一对多推送下面的token(您的Token)，不提供PUSH_PLUS_USER则默认为一对一推送
 //PUSH_PLUS_USER： 一对多推送的“群组编码”（一对多推送下面->您的群组(如无则新建)->群组编码，如果您是创建群组人。也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送）
 let PUSH_PLUS_TOKEN = ""
-let PUSH_KEY = ""
+let DEER_KEY = ""
 
 // =======================================PushMe通知设置区域===========================================
 //官方文档：https://push.i-i.me/
@@ -16,10 +16,10 @@ if (process.env.PUSH_PLUS_TOKEN) {
 } else {
   console.log("请设置环境变量 PUSH_PLUS_TOKEN")
 }
-if (process.env.PUSH_KEY) {
-  PUSH_KEY = process.env.PUSH_KEY
+if (process.env.DEER_KEY) {
+  DEER_KEY = process.env.DEER_KEY
 } else {
-  console.log("请设置PUSH_KEY")
+  console.log("请设置DEER_KEY")
 }
 
 if (process.env.PUSHME_KEY) {
@@ -87,12 +87,12 @@ function pushPlusNotify(text, desp = "", template = "html") {
 
 function pushDeerNotify(text, desp = "", type = "html") {
   return new Promise(resolve => {
-    if (PUSH_KEY) {
+    if (DEER_KEY) {
       if (type === "html") {
         desp = `${desp}`.replace(/[\n\r]/g, "<br>") // 默认为html, 不支持plaintext
       }
       const body = {
-        pushkey: `${PUSH_KEY}`,
+        pushkey: `${DEER_KEY}`,
         text: `${text}`,
         desp: `${desp}`,
         type: type,
